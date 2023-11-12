@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% block title %}{% endblock %} | Brain Skill</title>
+</head>
+<body>
+    <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-200 bg-gradient-to-r from-indigo-900 to-purple-900">
+        <a href='/' class='flex items-center space-x-2 transition-all transform hover:scale-105'>
+            <span class='text-3xl font-extrabold text-white tracking-tight'><span class='text-pink-500'>Brain Skill</span></span>
+        </a>
+        
+        <div class="flex items-center space-x-6">
+            <a href="{% url 'item:new' %}" class="text-lg font-semibold hover:text-yellow-500 focus:outline-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 transition-all transform hover:rotate-3">Innovate with <span class="text-pink-500">New Courses</span></a>
+            <div class="h-6 w-px bg-gray-400"></div>
+            <a href="#" class="text-lg font-semibold hover:text-yellow-500 focus:outline-none focus:border-yellow-500 focus:ring focus:ring-yellow-200 transition-all transform hover:rotate-3">Discover <span class="text-pink-500">More Courses</span></a>
+            
+            {% if request.user.is_authenticated %}
+                <a href="#" class="px-6 py-3 text-lg font-semibold bg-gradient-to-r from-pink-600 to-purple-700 text-white rounded-full hover:opacity-80 focus:outline-none focus:border-pink-700 focus:ring focus:ring-pink-200 transition-all transform hover:rotate-3 transform scale-100 hover:scale-105">Inbox</a>
+                
+                <a href="#" class="px-6 py-3 text-lg font-semibold bg-gradient-to-r from-green-500 to-teal-400 text-white rounded-full hover:opacity-80 focus:outline-none focus:border-green-600 focus:ring focus:ring-green-200 transition-all transform hover:rotate-3 transform hover:bg-green-600">Dashboard</a>
+               
+            {% else %}
+                <!-- "Sign up" button with a pulse effect -->
+                <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-gradient-to-r from-pink-600 to-purple-700 text-white rounded-full hover:opacity-80 focus:outline-none focus:border-pink-700 focus:ring focus:ring-pink-200 transition-all transform hover:rotate-3 transform scale-100 hover:scale-105">Sign up</a>
+                
+                <!-- "Log in" button with a subtle color change effect -->
+                <a href="{% url 'core:login' %}" class="px-6 py-3 text-lg font-semibold bg-gradient-to-r from-green-500 to-teal-400 text-white rounded-full hover:opacity-80 focus:outline-none focus:border-green-600 focus:ring focus:ring-green-200 transition-all transform hover:rotate-3 transform hover:bg-green-600">Log in</a>
+            {% endif %}
+        </div>
+    </nav>
+    
+    
+    <div class = "px-6 py-6">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer class="py-6 px-6 flex justify-between bg-gradient-to-r from-indigo-900 to-purple-900">
+        <div class="w-2/3 pr-10">
+            <h3 class="mb-5 text-2xl font-extrabold text-white">Our Vision</h3>
+            <p class="text-lg text-gray-300">Welcome to Brain Skill, where knowledge meets innovation. We believe in empowering minds through cutting-edge learning experiences, fostering creativity, and shaping the leaders of tomorrow.</p>
+        </div>
+    
+        <div class="w-1/3">
+            <h3 class="mb-5 text-2xl font-extrabold text-white">Quick Links</h3>
+    
+            <ul class="space-y-2">
+                <li><a href="#" class="text-lg text-teal-300 hover:text-teal-500">Explore Courses</a></li>
+                <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-300 hover:text-teal-500">Contact Us</a></li>
+                <li><a href="#" class="text-lg text-teal-300 hover:text-teal-500">Privacy Policy</a></li>
+                <li><a href="#" class="text-lg text-teal-300 hover:text-teal-500">Terms of Use</a></li>
+            </ul>
+        </div>
+    </footer>
+    
+</body>
+</html>
